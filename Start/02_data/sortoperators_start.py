@@ -15,7 +15,7 @@ class Product():
     def discount_price(self):
         return self.price - (self.price * self.discount)
 
-
+#name, price, weight, dicount
 prodlist = [
     Product("Widget A", 50, 10, 0.05),
     Product("Widget B", 40, 8, 0.15),
@@ -30,9 +30,16 @@ prodlist = [
 # itemgetter() retrieves an item at a given index in a collection
 # methodcaller() calls the given method on the object
 print("Using the attrgetter method:")
+print(sorted(prodlist, key=attrgetter("weight"), reverse=True))
+print(sorted(prodlist, key=attrgetter("weight", "price"), reverse=True))
 
 # print("Using methodcaller to invoke a method:")
+print(sorted(prodlist, key=methodcaller("discount_price")))
 
 # TODO: Use itemgetter to retrieve an index from a tuple or list
 inventory = [("Widget A", 5), ("Widget B", 2), ("Widget C", 4),
              ("Widget D", 7), ("Widget E", 4)]
+
+print("\n")
+
+print(sorted(inventory, key=itemgetter(1)))
